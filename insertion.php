@@ -8,8 +8,10 @@ $how = $_POST['how'];
 $when = $_POST['when'];
 $time = $_POST["time"];
 $session = $_POST["session"];
-$sql = "INSERT INTO idea (what_about, how_it_works, when_it_works,member_id,time,session)
-    VALUES ('$what', '$how', '$when','$idm','$time','$session')";
+$idea_date = $_POST["idea_date"];
+
+$sql = "INSERT INTO idea (what_about, how_it_works, when_it_works,member_id,time,session,idea_date)
+    VALUES ('$what', '$how', '$when','$idm','$time','$session','$idea_date')";
 
 $result = $conn->exec($sql);
 

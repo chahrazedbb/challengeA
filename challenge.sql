@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  sam. 17 nov. 2018 à 10:56
+-- Généré le :  mer. 23 jan. 2019 à 18:20
 -- Version du serveur :  10.1.32-MariaDB
 -- Version de PHP :  7.2.5
 
@@ -35,8 +35,44 @@ CREATE TABLE `idea` (
   `when_it_works` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `member_id` int(11) NOT NULL,
   `time` time NOT NULL,
-  `session` int(11) NOT NULL
+  `session` int(11) NOT NULL,
+  `idea_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `idea`
+--
+
+INSERT INTO `idea` (`id`, `what_about`, `how_it_works`, `when_it_works`, `member_id`, `time`, `session`, `idea_date`) VALUES
+(1, 'The building consists of a variable structure', 'the structure opens, encloses the person and descents to the ground', 'In case of an emergency ', 6, '00:08:57', 1, '2018-11-30 21:28:09'),
+(2, 'Window with a heat-sensitive material', 'that lights-up  ', 'if a person is in the room during a fire', 6, '00:08:20', 1, '2018-11-30 21:28:46'),
+(3, 'Rescue Indication facade', 'The facade indicates in which floor', 'people that need to be rescued', 6, '00:07:42', 1, '2018-11-30 21:29:24'),
+(4, 'changeable building structure', 'that changes its structure to a party zone', 'in case of an emergency, for example during a terrorist warning ', 6, '00:06:50', 1, '2018-11-30 21:30:16'),
+(5, 'net attached to the facade of a building', 'that works as a slide and therefore as an escape route', 'in case of an emergency	', 6, '00:06:02', 1, '2018-11-30 21:31:04'),
+(6, 'landscape architecture that changes into an air bed', 'secures people jumping out of a window	', 'in an emergency			', 6, '00:04:57', 1, '2018-11-30 21:32:09'),
+(7, 'rescue-robots, Have their own power supply', 'that are in the different floors of the building and are activated', 'in case of emergency', 6, '00:04:25', 1, '2018-11-30 21:32:41'),
+(8, 'magnet panels are in the shoes and in the floor ', 'The shoes (and therefore the persons) are guided along the rescure-route automatically ', 'in case of emergency', 6, '00:03:56', 1, '2018-11-30 21:33:10'),
+(9, 'emergency radio ', 'Instructions about necessary behavior. Calming of the guests', 'in case of emergency', 6, '00:03:21', 1, '2018-11-30 21:33:45'),
+(10, 'rescue clouds', 'Clouds then hover to the ground	', 'People jump out of the window', 6, '00:02:47', 1, '2018-11-30 21:34:19'),
+(11, 'Navigation of the fire department to the seat of fire', ' protective system that identifies the seat of fire and detects smoke development', 'the seat of fire and detects smoke', 6, '00:01:22', 1, '2018-11-30 21:35:44'),
+(12, 'tunnel system is unfolded', 'Leads people through the hotel. Save navigation to the exit', ' in case of a fire', 6, '00:09:10', 2, '2018-11-30 21:37:57'),
+(13, 'The room is sealed airtight ', ' that can be used as an escape route and supplies people with oxygen no smoke can get in . A ventilation system supplies oxygen', 'so that in case of a fire', 6, '00:08:37', 2, '2018-11-30 21:38:30'),
+(14, 'rescue parachutes ', ' parachutes in the upper levels of high-rise buildings for escape route', 'in case of a fire ', 6, '00:07:40', 2, '2018-11-30 21:39:27'),
+(15, ' Capsule puts itself over the fire', ' Extinguishing of a fire by deoxygenation  ', 'in case of a fire ', 6, '00:06:32', 2, '2018-11-30 21:40:35'),
+(16, 'emergency TV	', ' informations for hotel guests via a TV/Computer in the room, Individual using the language of the guests', ' In case of an emergency', 6, '00:05:54', 2, '2018-11-30 21:41:13'),
+(17, 'flying robots/drones', ' that generate light and send information to the rescue teams', ' In case of an emergency', 6, '00:09:18', 3, '2018-11-30 21:42:08'),
+(18, 'Flying Drones	', ' that place rescue robots on higher levels of high-rise buildings', ' In case of an emergency	', 6, '00:08:36', 3, '2018-11-30 21:42:50'),
+(19, ' Safety-Zones on different levels of the building', ' Exit/Communication to the outside ', ' In case of an emergency	', 6, '00:08:11', 3, '2018-11-30 21:43:15'),
+(20, 'retractable building', 'the building completely retracts into the ground ', 'in case of a terrorist warning	', 6, '00:07:40', 3, '2018-11-30 21:43:46'),
+(21, 'formation of a rescue cloud', ' rescue from great heights by changing the information and formation of specific particles in the atmosphere ', 'in case of an emergency ', 6, '00:09:09', 4, '2018-11-30 21:45:11'),
+(22, 'Pipe/Airlift', ' safe passage between building an helicopter', 'In case of an emergency', 6, '00:08:18', 4, '2018-11-30 21:46:02'),
+(23, 'mobile rescue-drone', 'that docks to buildings and serves as an escape route', 'In case of an emergency', 6, '00:07:53', 4, '2018-11-30 21:46:27'),
+(24, 'solid exterior space', 'that normally functions as a balcony and is refunctionalized into a panic-room and is grounded using ropes or helicopters', 'In case of an emergency', 6, '00:07:22', 4, '2018-11-30 21:46:58'),
+(25, 'Evacuation Application ', 'that analyses dangerous situations and forwards informations to smartphones via an App. Individualized emergency escape routes by exact determination in the object and knowledge about the danger source', 'In case of an emergency', 6, '00:06:50', 4, '2018-11-30 21:47:30'),
+(26, 'intelligent rescue system', ' that identifies accidents in buildings and assumes emergency navigation. Transferable to traffic systems, major events etc ', 'people that need to be rescued', 6, '00:06:07', 4, '2018-11-30 21:48:13'),
+(27, 'smart fire extinguisher with integrated fire detector', 'Shows escape routes and absorbes smoke', 'in case of a fire ', 6, '00:05:35', 4, '2018-11-30 21:48:45'),
+(28, ' Position information', ' display of evacuation routes, display of visible and invisible dangers (e.g. radiation). sending and receiving. thermal image', ' in case of a catastrophe', 6, '00:04:38', 4, '2018-11-30 21:49:42'),
+(29, ' self-destructing material self-destructs, making the hammer redundant ', ' Emergency Hammer with integrated emergency message, gps-localization, display with emergency informations like first-aid-instructions', 'In case of an emergency', 6, '00:09:35', 5, '2018-11-30 21:50:17');
 
 -- --------------------------------------------------------
 
@@ -50,6 +86,13 @@ CREATE TABLE `member` (
   `email` varchar(80) NOT NULL,
   `password` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `member`
+--
+
+INSERT INTO `member` (`id`, `username`, `email`, `password`) VALUES
+(1, 'user1', 'user1@email.com', '$2y$12$z/mWxmF.JHm0oNoCpuMcYe3ND67E.WscgOlm0yCQBR2i5saAc8ylu');
 
 --
 -- Index pour les tables déchargées
@@ -76,13 +119,13 @@ ALTER TABLE `member`
 -- AUTO_INCREMENT pour la table `idea`
 --
 ALTER TABLE `idea`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT pour la table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées

@@ -99,13 +99,44 @@ elseif  (isset($_POST['register'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <style type="text/css">
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  padding: 10px 16px;
+  background:  rgb(0, 189, 197);
+  color: #f1f1f1;
+}
+
+.content {
+  padding: 16px;
+}
+
+
+h1{
+    text-decoration: underline;
+    font-family: "Times New Roman", Times, serif;
+}
+
+h3{
+       font-family: "Times New Roman", Times, serif;
+       font-size: 24px; 
+}
+
+p {
+    font-family: "Times New Roman", Times;
+    padding-left: 30px;
+    font-size: 17px;
+}
         form {
             background-color: white;
             box-sizing: border-box;
             box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
             width: 600px;
             margin: 100px auto 0;
-            padding-bottom: 25px;
+            padding-bottom: 30px;
             padding-top: 20px;
         }
         input {
@@ -119,7 +150,7 @@ elseif  (isset($_POST['register'])){
         }
         button {
             border: none;
-            background: #1abc9c;
+            background-color: #008CBA;
             cursor: pointer;
             border-radius: 3px;
             padding: 6px;
@@ -145,11 +176,42 @@ elseif  (isset($_POST['register'])){
             display:none
         }
         label:hover{
-            color: #1abc9c ;
+            color: rgb(0, 189, 197); ;
         }
     </style>
 </head>
 <body>
+    <div class="header" id="myHeader">
+        <h1>Challenge</h1>
+    </div>
+
+    <div class="content">
+    <p>
+        In this Task we will collect ideas about a urban security, in order to (1) analyse the creativity of ideas (how novel and useful) and (2) finding relationships between ideas generated.
+      </p>
+      <h3>How long will the Task take? </h3>
+      <p>
+        This Task will take approximately 10 minutes Brainstorming session
+      </p>
+
+
+      <h3>Who are we?</h3>
+      <p>
+        At the <a href="https://www.fu-berlin.de/en/"></a> University of Djilali Liebes, Algeria, we are currently developing a system for creativity support and idea management. This system uses Natural Language Processing, Semantic Technologies and Matching to support users in brainstorming sessions as well as managing ideas.
+      </p>
+
+
+      <h3>What happens to my ideas?</h3>
+        <p>
+        After the task is complete, your ideas will be saved and analysed using statistical methods. In order to provide the idea corpus to other researchers, we will publish the anonymized ideas.
+        <br/>
+        Please accept this task only if you are absolutely sure that you can commit your full attention for the next 10 minutes.
+        <br/>
+         By accepting the HIT you agree to this usage, so let start!!!
+        </p>
+    </div>
+
+
 <input type='checkbox' id='form-switch'>
 <form id='login-form' action="" method="post">
     <input type="email" name="email" placeholder="Email" required>
@@ -167,6 +229,9 @@ elseif  (isset($_POST['register'])){
     <label for='form-switch'>Already Member ? Sign In Now..</label>
 </form>
 
+<br/><br/>
+<br/><br/>
+
 <script type="text/javascript">
     var password = document.getElementById("password")
         , repassword = document.getElementById("repassword");
@@ -181,6 +246,20 @@ elseif  (isset($_POST['register'])){
 
     password.onchange = validatePassword;
     repassword.onkeyup = validatePassword;
+</script>
+<script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
 </script>
 </body>
 </html>

@@ -1,136 +1,154 @@
 <?php
-session_start();
+    session_start();
 
-if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])){
+    if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in'])){
 
-    header('Location: login.php');
-    exit;
-}
+        header('Location: login.php');
+        exit;
+    }
 
-if (isset($_POST['Logout'])) {
+    if (isset($_POST['Logout'])) {
 
-    session_destroy();
-    header('location: login.php');
-}
+        session_destroy();
+        header('location: login.php');
+    }
 
-$idm = $_SESSION['user_id'] ;
-$user = $_SESSION['user_name'];
-
-
-require 'conn.php' ;
-
-$sql =("SELECT what_about, how_it_works, when_it_works FROM idea WHERE '$idm' = member_id ORDER BY id DESC ");
+    $idm = $_SESSION['user_id'] ;
+    $user = $_SESSION['user_name'];
 
 
-$sq =("SELECT * FROM idea WHERE '$idm' = member_id  ORDER BY session DESC LIMIT 1");
+    require 'conn.php' ;
+
+    $sql =("SELECT what_about, how_it_works, when_it_works FROM idea WHERE '$idm' = member_id ORDER BY id DESC ");
 
 
-foreach($conn->query($sq) as $row) {
-    $ses = $row['session'] ;
-}
+    $sq =("SELECT * FROM idea WHERE '$idm' = member_id  ORDER BY session DESC LIMIT 1");
+
+
+    foreach($conn->query($sq) as $row) {
+        $ses = $row['session'] ;
+    }
 ?>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style type="text/css">
-        label {
-            padding: 12px 12px 12px 0;
-            display: inline-block;
-        }
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
 
-        input[type=submit] {
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+            html, body, {
+            }
 
-        input[type=reset] {
-            padding: 12px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: yellow;
-            border: none;
-        }
+            body {
+              font-family: Arial, Helvetica, sans-serif;
+            }
+            h1{
+                text-decoration: underline;
+                font-family: "Times New Roman", Times, serif;
+            }
 
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
+            label {
+                padding: 12px 12px 12px 0;
+                display: inline-block;
+            }
 
-        .container {
-            border-radius: 10px;
-            background-color: white;
-            padding: 30px;
-            margin: 2%;
-        }
+            input[type=submit] {
+                padding: 12px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
 
-        .col-25 {
-            float: left;
-            width: 25%;
-            margin-top: 6px;
-        }
+            input[type=reset] {
+                padding: 12px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                background-color: yellow;
+                border: none;
+            }
+            .container {
+                border-radius: 10px;
+                background-color: white;
+                padding: 5px;
+                margin: 2%;
+                padding-top: 2px;
+            }
 
-        .col-75 {
-            float: left;
-            width: 75%;
-            margin-top: 6px;
-        }
+            .col-25 {
+                float: left;
+                width: 25%;
+                margin-top: 6px;
+            }
 
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+            .col-75 {
+                float: left;
+                width: 75%;
+                margin-top: 6px;
+            }
 
-        input[type=text] {
-            width: 70%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            resize: vertical;
-        }
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
 
-        .vl {
-            border-left: 1px solid #E6E6FA;
-            height: 600px;
-            position: absolute;
-            left: 58%;
-            top: 40%;
-            margin-left: -3px;
-        }
+            input[type=text] {
+                width: 70%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                resize: vertical;
+            }
+            textarea {
+               width: 90%;
+              height: 50px;
+              padding: 12px 20px;
+              box-sizing: border-box;
+              border: 2px solid #ccc;
+              border-radius: 4px;
+              font-size: 16px;
+              resize: none;
+            }
 
-        .left {
-            float:left;
-            width:55%;
-            background-color: #E6E6FA;
-            padding: 10px;
-            box-shadow: 5px 10px 8px #888888;
-        }
+            .left {
+                float:left;
+                width:55%;
+                background-color: #E6E6FA;
+                padding: 10px;
+                box-shadow: 5px 10px 8px #888888;
+                margin: 0.5%;
+                height: auto;
+            }
 
-        .right {
-            float:left;
-            width:40%;
-            height:600px
-        }
+            .right {
+                float:left;
+                width:40%;
+                height:600px
+                height: auto;
+            }
 
-        .idea {
-            border-radius: 2px;
-            background-color: 	#87CEFA;
-            padding: 20px;
-            margin: 2%;
-            width: 70%
-        }
+            .idea {
+                border-radius: 2px;
+                background-color: 	#87CEFA;
+                padding: 20px;
+                margin: 2%;
+                width: 70%
+            }
 
-        .idea2 {
-            border-radius: 2px;
-            background-color:   #87CEFA;
-            padding: 10px;
-            margin: 2%;
-            width: 80%;
-        }
+            .idea2 {
+                border-radius: 2px;
+                background-color:   #87CEFA;
+                padding: 10px;
+                margin: 2%;
+                width: 90%;
+            }
+            .footer{
+              float: right;
+              width: 100%;
+              text-align: center;
+              bottom: : 0 ;
+            }
 
-        button {
+            button {
             padding: 5px 10px;
             border-radius: 2px;
             cursor: pointer;
@@ -139,279 +157,374 @@ foreach($conn->query($sq) as $row) {
             color: #008CBA;
             border: 2px solid #008CBA;
         }
-        td {
-            padding: 1px;
-            text-align: left;
+
+        table.d {
+          table-layout: fixed;
+          width: 100%;  
         }
 
-    </style>
+        </style>
+    </head>
+    <body>
 
-</head>
-<body>
-<div>
-    <form method="post" action="">
-        <button type='submit' name="Logout"  onclick="resetValues()">Logout</button>
-    </form>
     <div>
-        Welcome <?php echo $user ; ?>
-    </div>
-    <p>
-        Your task is to come up with many ideas as you can to address the problem below. Be as specific as possible in your responses.
-    </p>
-
-    <p style="font-size:12px;">
-        P.S: if you have any issues with the system, try refreching the page : it will maintain your ideas and the timer in the same place as before.
-    </p>
-</div>
-<div>
-    <h1>Challenge</h1>
-    <p style="font-size:24px;">We are searching for innovative (technical) solution for the security of city building. In the first step think of possible dangerous events, wich might occur (e.g. fire). Then brainstorm innovative solutions, how people in the bulding could be protected from such a danger or rescued from the building.</p>
-
-    <p id="clockdiv">
-        Time left: <span class="minutes"></span>:<span class="seconds"></span>
-    </p>
-</div>
-
-<div class="left" >
-    <h3>
-        Submit a new idea
-    </h3>
-    <div class="container" >
-        <p>
-            please describe your ideas as follows :
-        </p>
-        <form method="post" action="insertion.php" id="myform">
-            <input type="hidden" name="idm" value="<?php echo $idm; ?>">
-            <div class="row">
-                <div class="col-25">
-                    <label for="fname">What is it about :</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" name="what" id="what" required onkeyup='saveValue(this);'>
-                </div>
+        <div style="min-width: 1200px; margin: 0 auto; max-height: 1080px;">
+            <div class="header" id="myHeader">
+                <form method="post" action="">
+                    <button type='submit' name="Logout" class="tablink" onclick="resetValues()">Logout</button>
+                </form>
+                <h1>Challenge</h1>
+                <p>Welcome <?php echo $user ; ?></p>
             </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="lname">How it works :</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" name="how" id="how" required onkeyup='saveValue(this);'>
-                </div>
+            <div class="content">
+                <p>
+                    Your task is to come up with many ideas as you can to address the problem below. Be as specific as possible in your responses.
+                </p>
+                <p style="font-size: 20px;">We are searching for innovative (technical) solution for the security of city building. In the first step think of possible dangerous events, which might occur (e.g. fire). Then brainstorm innovative solutions, how people in the bulding could be protected from such a danger or rescued from the building.</p>
             </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="country">When it works :</label>
-                </div>
-                <div class="col-75">
-                    <input type="text" name="when" id="when" required onkeyup='saveValue(this);'>
-                </div>
-            </div>
-    </div>
+        </div>
+        <div style="margin-left : 2% ;">
+            <p id="clockdiv">
+                Time left: <span class="minutes"></span>:<span class="seconds"></span>
+            </p>
+        </div>
+        <div  style="min-width: 1200px; margin: 0 auto; max-height: 1080px;">
+                <div class="left" >
+                    <h3>
+                        Submit a new idea
+                    </h3>
+                    <div class="container" >
+                        <p>
+                            Please describe your ideas as follows:
+                        </p>
+                        <form method="post" action="insertion.php" id="myform">
+                            <input type="hidden" name="idm" value="<?php echo $idm; ?>">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="fname">What is it about:</label>
+                                </div>
+                                <div class="col-75">
+                                    <textarea name="what" id="what" onkeyup='saveValue(this);' required></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="lname">How it works:</label>
+                                </div>
+                                <div class="col-75">
+                                    <textarea name="how" id="how" onkeyup='saveValue(this);' required></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="country">When it works:</label>
+                                </div>
+                                <div class="col-75">
+                                    <textarea name="when" id="when" onkeyup='saveValue(this);' required></textarea>
+                                </div>
+                            </div>
 
-    <input type="hidden" name="time" id="time" onkeyup='saveValue(this);'>
-    <input type="hidden" name="session" id="session" value="<?php echo $ses ?>">
+                            <input type="hidden" name="time" id="time" onkeyup='saveValue(this);'>
+                            <input type="hidden" name="session" id="session" value="<?php echo $ses ?>">
+                            <input type="hidden" name="idea_date" id="idea_date">
 
-    <div class="row">
-        <input type="reset" value="Reset">
-        <input type="submit" value="Submit" style="background-color: #008CBA; color: white; border: none; " onclick="getTime()">
-    </div>
-    </form>
-    <hr width="700px">
-    <p>
-        Your previous ideas
-    </p>
-    <p>
-        <?php foreach($conn->query($sql) as $row) { ?>
-    <div class="idea">
-        <?php
-        echo "<table>
-                <tr>
-                    
-                    <th width='30%'  valign='top'>what is it about : </th>
-                  
-                    <td  valign='top'>
-                        {$row['what_about']}
-                    </td>
-                </tr>
-                <tr>
-                    
-                     <th width='30%'  valign='top'>how it works : </th>
-                   
-                    <td  valign='top'>
-                        {$row['how_it_works']}
-                    </td>
-                </tr>
-                <tr>
-                 
-                    <th width='30%'  valign='top'>when it works : </th>
-                   
-                    <td  valign='top'>
-                        {$row['when_it_works']}
-                    </td>
-                </tr>
-            </table>";
-        ?>
-    </div>
-    <?php } ?>
-    </p>
+                            <div class="row">
+
+                                <input type="reset" value="Reset" onclick="resetValuesOnly()">
+                                <input type="submit" value="Submit" style="background-color: #008CBA; color: white; border: none; " onclick="getTime()">
+                            </div>
+                         </form>
+                         <div style="font-size: 13px">
+                         <p>What about: describes what the idea is about</p>
+                         <p>How it works: describes how the idea works</p>
+                         <p>When it works: describes when the idea works</p>
+                        </div>
+                    </div> 
+                    <hr width="600px">
+                    <p>
+                        Your previous ideas
+                    </p>
+                        <?php foreach($conn->query($sql) as $row) { ?>
+                    <div class="idea">
+                        <?php
+                        echo "<table class='d'>
+                                <tr>
+                                    
+                                    <td valign='top' width='30%'>
+                                        <b>what is it about:</b>
+                                     </td>
+                                  
+                                    <td valign='top' style='word-wrap: break-word'>
+                                        {$row['what_about']}
+                                    </td>
+                                </tr>
+                                </table>
+                                <hr width='200px'>
+                                <table class='d'>
+                                <tr>
+                                    
+                                     <td valign='top' width='30%'>
+                                     <b>how it works: </b>
+                                     </td>
+                                   
+                                    <td valign='top' style='word-wrap: break-word'>
+                                        {$row['how_it_works']}
+                                    </td>
+                                </tr>
+                                </table>
+                                <hr width='200px'>
+                                <table class='d'>
+                                <tr>
+                                 
+                                    <td valign='top' width='30%'>
+                                     <b>when it works: </b>
+                                     </td>
+                                   
+                                    <td valign='top' style='word-wrap: break-word'>
+                                        {$row['when_it_works']}
+                                    </td>
+                                </tr>
+                            </table>";
+                        ?>
+                    </div>
+                    <?php } ?>
+                </div>
+
+                <div class="right">
+                    <center>
+                        <form action="" method="post">
+                            <input type="submit" value="NEED INSPIRATION ?" name="insp" style="background-color: white; color: #008CBA; border: 2px solid #008CBA; ">
+                        </form>
+                        <p style="margin-left : 20px;">
+                            Click the button above and you will be presented with a set of others'ideas.
+                        </p>
+                        <p style="margin-left : 20px;">
+                            Feel free to use them as inspiration: remix them with your own ideas, expand on them, or use them in any way you'd like!
+                        </p>
+                        <hr width="400px">
+                        <?php
+                        if (isset($_POST['insp'])) {
+                            $sql2 = (" SELECT what_about, how_it_works, when_it_works 
+                               FROM idea 
+                               ORDER BY RAND() 
+                               LIMIT 3;");
+                            foreach($conn->query($sql2) as $row) { ?>
+                   <div class="idea2">
+                                    <?php
+                        echo "<table class='d'>
+                                <tr>
+                                    
+                                    <td valign='top' width='30%'>
+                                        <b>what is it about:</b>
+                                     </td>
+                                  
+                                    <td valign='top' style='word-wrap: break-word'>
+                                        {$row['what_about']}
+                                    </td>
+                                </tr>
+                                </table>
+                                <hr width='200px'>
+                                <table class='d'>
+                                <tr>
+                                    
+                                     <td valign='top' width='30%'>
+                                     <b>how it works: </b>
+                                     </td>
+                                   
+                                    <td valign='top' style='word-wrap: break-word'>
+                                        {$row['how_it_works']}
+                                    </td>
+                                </tr>
+                                </table>
+                                <hr width='200px'>
+                                <table class='d'>
+                                <tr>
+                                 
+                                    <td valign='top' width='30%'>
+                                     <b>when it works: </b>
+                                     </td>
+                                   
+                                    <td valign='top' style='word-wrap: break-word'>
+                                        {$row['when_it_works']}
+                                    </td>
+                                </tr>
+                            </table>";
+                        ?>
+                    </div>
+                        <?php } };?>
+                    </center>
+                </div>
+        </div> 
+        <div class="footer">
+        
+            <p style="font-size:12px;">
+                P.S: if you have any issues with the system, try refreching the page: it will maintain your ideas and the timer in the same place as before.
+            </p>
+        </div>
 </div>
-<div class="vl"></div>
-<div class="right">
-    <center>
-        <form action="" method="post">
-            <input type="submit" value="NEED INSPIRATION ?" name="insp" style="background-color: white; color: #008CBA; border: 2px solid #008CBA; ">
-        </form>
-        <p style="margin-left : 20px;">
-            Click the button above and you will be presented with a set of others'ideas.
-        </p>
-        <p style="margin-left : 20px;">
-            Feel free to use them as inspiration: remix them with your own ideas, expand on them, or use them in any way you'd like!
-        </p>
-        <hr width="400px">
-        <?php
-        if (isset($_POST['insp'])) {
-            $sql2 = (" SELECT what_about, how_it_works, when_it_works 
-               FROM idea 
-               WHERE '$idm' = member_id 
-               ORDER BY RAND() 
-               LIMIT 3;");
-
-            foreach($conn->query($sql2) as $row) { ?>
-                <div class="idea2">
-                    <?php
-                    echo "<table>
-                <tr>
-                    
-                    <th width='30%'  valign='top'>what is it about : </th>
-                  
-                    <td  valign='top'>
-                        {$row['what_about']}
-                    </td>
-                </tr>
-                <tr>
-                    
-                     <th width='30%'  valign='top'>how it works : </th>
-                   
-                    <td  valign='top'>
-                        {$row['how_it_works']}
-                    </td>
-                </tr>
-                <tr>
-                 
-                    <th width='30%'  valign='top'>when it works : </th>
-                   
-                    <td  valign='top'>
-                        {$row['when_it_works']}
-                    </td>
-                </tr>
-            </table>";
-                    ?>
-                </div>
-            <?php } }?>
-    </center>
-
-</div>
-
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
-    // timer
-    var timeInMinutes = 10;
-    var currentTime = Date.parse(new Date());
-    var deadline;
-    var session;
-    if(isNaN(document.getElementById('session').value)){ session = 0 ;}
-    else{session = Number(document.getElementById('session').value);}
+            // timer
+            var timeInMinutes = 0.1;
+            var currentTime = Date.parse(new Date());
+            var deadline;
+            var session;
+            if(isNaN(document.getElementById('session').value)){ session = 0 ;}
+            else{session = Number(document.getElementById('session').value);}
 
-    if(localStorage.getItem("deadline") != 0) {
-        deadline = new Date(localStorage.getItem("deadline"));
-        document.getElementById('session').value = session;
-    } else {
-        deadline = new Date(currentTime + timeInMinutes*60*1000);
-        session = session + 1 ;
-        document.getElementById('session').value = session;
-    }
-
-    function getTimeRemaining(endtime){
-        var t = Date.parse(endtime) - Date.parse(new Date());
-        var seconds = Math.floor( (t/1000) % 60 );
-        var minutes = Math.floor( (t/1000/60) % 60 );
-        return {
-            'total': t,
-            'minutes': minutes,
-            'seconds': seconds
-        };
-    }
-
-    function initializeClock(id, endtime){
-        var clock = document.getElementById(id);
-        function updateClock(){
-            var t = getTimeRemaining(endtime);
-            var minutesSpan = clock.querySelector('.minutes');
-            var secondsSpan = clock.querySelector('.seconds');
-            minutesSpan.innerHTML = t.minutes;
-            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-            if(t.total<=0){
-                alert("time is over !");
-                window.location.href="challenge.php";
-                resetValues();
-            }else{
-
-                localStorage.setItem("deadline", deadline);
+            if(localStorage.getItem("deadline") != 0) {
+                deadline = new Date(localStorage.getItem("deadline"));
+                document.getElementById('session').value = session;
+            } else {
+                deadline = new Date(currentTime + timeInMinutes*60*1000);
+                session = session + 1 ;
+                document.getElementById('session').value = session;
             }
-        }
-        updateClock();
-        var timeinterval = setInterval(updateClock,1000);
-    }
 
-    initializeClock('clockdiv', deadline);
+            function getTimeRemaining(endtime){
+                var t = Date.parse(endtime) - Date.parse(new Date());
+                var seconds = Math.floor( (t/1000) % 60 );
+                var minutes = Math.floor( (t/1000/60) % 60 );
+                return {
+                    'total': t,
+                    'minutes': minutes,
+                    'seconds': seconds
+                };
+            }
 
-    function getTime(){
-        var t = Date.parse(deadline) - Date.parse(new Date());
-        var seconds = Math.floor( (t/1000) % 60 );
-        var minutes = Math.floor( (t/1000/60) % 60 );
+            function initializeClock(id, endtime){
+                var clock = document.getElementById(id);
+                function updateClock(){
+                    var t = getTimeRemaining(endtime);
+                    var minutesSpan = clock.querySelector('.minutes');
+                    var secondsSpan = clock.querySelector('.seconds');
+                    minutesSpan.innerHTML = t.minutes;
+                    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+                    if(t.total<=0){
+                        resetValues();
+                        window.location.href = 'logout.php';
+                        alert("time is over !");
 
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-        if (seconds < 10) {
-            seconds = "0" + seconds;
-        }
-        document.getElementById("time").value = "00:" + minutes + ":" + seconds ;
-    }
+                    }else{
+
+                        localStorage.setItem("deadline", deadline);
+                    }
+                }
+                updateClock();
+                var timeinterval = setInterval(updateClock,1000);
+            }
+
+            initializeClock('clockdiv', deadline);
+
+            function getTime(){
+                var t = Date.parse(deadline) - Date.parse(new Date());
+                var seconds = Math.floor( (t/1000) % 60 );
+                var minutes = Math.floor( (t/1000/60) % 60 );
+
+                if (minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+                if (seconds < 10) {
+                    seconds = "0" + seconds;
+                }
+                document.getElementById("time").value = "00:" + minutes + ":" + seconds ;
+                var dt = new Date() ;
+                document.getElementById("idea_date").value  = (dt.getFullYear())+"-"+ (("0"+(dt.getMonth()+1)).slice(-2)) +"-"+ (("0"+dt.getDate()).slice(-2))  +" "+ (("0"+dt.getHours()).slice(-2)) +":"+ (("0"+dt.getMinutes()).slice(-2)) + ":" + (("0"+dt.getSeconds()).slice(-2));  
+
+                var xx = document.getElementById("what").value.trim();
+                var yy = document.getElementById("how").value.trim();
+                var zz = document.getElementById("when").value.trim();
+
+                if(xx=="" || yy=="" || zz==""){
+                    alert("all filleds must be filled out");
+                    if (xx == "") {
+                        document.getElementById("what").value = "";
+                         localStorage.setItem('what', '');
+                    } 
+                    if (yy=="") {
+                        document.getElementById("how").value = "";
+                        localStorage.setItem('how', '');
+                    }
+                    if (zz=="") {
+                        document.getElementById("when").value = "";
+                        localStorage.setItem('when', '');
+                    }
+                    return false;
+                }else{
+
+                document.getElementById("myform").submit();
+
+                document.getElementById("what").value = "";
+                document.getElementById("how").value = "";
+                document.getElementById("when").value = "";
+
+                localStorage.setItem('what', '');
+                localStorage.setItem('how', '');
+                localStorage.setItem('when', '');
+
+                }
+            }
 
 
-    // keeping inputs values after refresh
-    function saveValue(e){
-        var id = e.id;
-        var val = e.value;
-        localStorage.setItem(id, val);  }
+            // keeping inputs values after refresh
+            function saveValue(e){
+                var id = e.id;
+                var val = e.value;
+                localStorage.setItem(id, val);  }
 
-    function getSavedValue  (v){
-        if (localStorage.getItem(v) == null) {
-            return "";
-        }
-        return localStorage.getItem(v);
-    }
+            function getSavedValue  (v){
+                if (localStorage.getItem(v) == null) {
+                    return "";
+                }
+                return localStorage.getItem(v);
+            }
 
-    function resetValues(){
+            function resetValuesOnly(){
 
-        document.getElementById("what").value = "";
-        document.getElementById("how").value = "";
-        document.getElementById("when").value = "";
+                
+                document.getElementById("what").value = "";
+                document.getElementById("how").value = "";
+                document.getElementById("when").value = "";
 
-        localStorage.setItem('what', '');
-        localStorage.setItem('how', '');
-        localStorage.setItem('when', '');
-        deadline = 0 ;
-        localStorage.setItem("deadline", deadline);
+                localStorage.setItem('what', '');
+                localStorage.setItem('how', '');
+                localStorage.setItem('when', '');
+            }
+
+            function resetValues(){
+
+                document.getElementById("what").value = "";
+                document.getElementById("how").value = "";
+                document.getElementById("when").value = "";
+
+                localStorage.setItem('what', '');
+                localStorage.setItem('how', '');
+                localStorage.setItem('when', '');
+                deadline = 0 ;
+                localStorage.setItem("deadline", deadline);
 
 
-    }
+            }
 
-    document.getElementById("what").value = getSavedValue("what");
-    document.getElementById("how").value = getSavedValue("how");
-    document.getElementById("when").value = getSavedValue("when");
+            document.getElementById("what").value = getSavedValue("what");
+            document.getElementById("how").value = getSavedValue("how");
+            document.getElementById("when").value = getSavedValue("when");
+
+
+            // to prevent default required alert from showing up
+            document.addEventListener('invalid', (function () {
+          return function (e) {
+            e.preventDefault();
+            document.getElementById("what").focus();
+            document.getElementById("how").focus();
+            document.getElementById("when").focus();
+
+              };
+            })(), true);
 
 </script>
+
+
 </body>
 </html>
